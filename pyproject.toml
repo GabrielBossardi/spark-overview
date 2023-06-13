@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "spark-overview"
+version = "0.1.0"
+description = "The Spark Code Overview Project"
+authors = ["Gabriel Bossardi <contato@gabrielbossardi.com.br>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "spark_overview"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+pandas = "^2.0.2"
+pyarrow = "^12.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

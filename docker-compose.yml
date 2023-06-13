@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  spark:
+    build:
+      context: ./spark
+      dockerfile: dockerfile-driver
+    ports:
+      - '8080:8080'
+    volumes:
+      - ".:/spark-files:rw"
+
+  spark-worker-1:
+    build:
+      context: ./spark
+      dockerfile: dockerfile-executor
+
+  spark-worker-2:
+    build:
+      context: ./spark
+      dockerfile: dockerfile-executor
+
+  minio-import:
+    build:
+      context: ./storage
+      dockerfile: Dockerfile
+    env_file:
+      - .env
