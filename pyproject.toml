@@ -9,6 +9,9 @@ packages = [{include = "spark_overview"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+notebook = "^6.5.4"
+pyspark = "^3.4.0"
+findspark = "^2.0.1"
 
 
 [tool.poetry.group.dev.dependencies]
