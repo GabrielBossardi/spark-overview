@@ -1,11 +1,11 @@
 FROM minio/minio
 
-# Copy local files to the container
-COPY ./*_data /data
+ENV MINIO_ROOT_USER=$MINIO_ROOT_USER
+ENV MINIO_ROOT_PASSWORD=$MINIO_ROOT_PASSWORD
 
-# Set environment variables from .env file
-ENV MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY
-ENV MINIO_SECRET_KEY=$MINIO_SECRET_KEY
+# Import and install mc
+RUN curl -O https://dl.min.io/client/mc/release/linux-amd64/mc && \
+    chmod +x mc && \
+    mv mc /usr/local/bin/mc
 
-# Command to import local data to MinIO
-CMD ["sh", "-c", "mc config host add minio http://localhost:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY && mc cp /data minio/spark-bucket/ --recursive"]
+CMD ["server", "/data", "--console-address", ":9090"]
